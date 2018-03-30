@@ -78,7 +78,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\AutoMapperConfigurator.cs" />
+    <Compile Include="Infrastructure\InfrastructureSetup.cs" />
     <Compile Include="Interfaces\IPeopleDataManagementService.cs" />
     <Compile Include="Models\ServiceResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

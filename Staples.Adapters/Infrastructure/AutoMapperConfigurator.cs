@@ -3,9 +3,9 @@ using Staples.DAL.Models;
 
 namespace Staples.Adapters.Infrastructure
 {
-    public class AutoMapperConfigurator
+    public class InfrastructureSetup
     {
-        public static void SetupConfiguration()
+        public static void SetupAutoMapper()
         {
             Mapper.Initialize(cfg =>
             {

@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 
 namespace Staples.DAL.Interfaces
 {
-    public interface IPersonRepository
+    public interface IPersonRepository : IRepository<Person>
     {
         Task<List<Person>> GetPeopleByFirstAndLastNameAsync(string firstName, string lastName);
-        Task<int> AddPersonAsync(Person person);
     }
 }

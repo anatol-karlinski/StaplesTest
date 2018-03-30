@@ -12,7 +12,8 @@ namespace Staples.GUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            SL.Infrastructure.AutoMapperConfigurator.SetupConfiguration();
+            DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
+            SL.Infrastructure.InfrastructureSetup.SetupAutoMapper();
         }
     }
 }

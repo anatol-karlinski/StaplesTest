@@ -5,13 +5,13 @@ namespace Staples.DAL.Models
 {
     public class PersonDetails
     {
-        [Key]
-        public int ID { get; set; }
+        [Required]
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
+        [Required]
         public string LastName { get; set; }
         public string Email { get; set; }
-        public Gender Gender { get; set; }
-        public int Age { get; set; }
+        public Gender? Gender { get; set; }
+        public int? Age { get; set; }
     }
 }
