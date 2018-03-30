@@ -1,4 +1,3 @@
-using Staples.DAL.Helpers;
 using Staples.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -12,11 +11,11 @@ namespace Staples.DAL.Abstracts
     public abstract class AbstractRepository<T>
         where T : class
     {
-        private XMLHelper<T> _xmlDbHelper;
+        //private XMLHelper<T> _xmlDbHelper;
 
         public AbstractRepository()
         {
-            _xmlDbHelper = new XMLHelper<T>(typeof(T).Name + "Db");
+            //_xmlDbHelper = new XMLHelper<T>(typeof(T).Name + "Db");
         }
 
         protected async Task<List<T>> GetWhereAsync(Expression<Func<T, bool>> whereQuery)
@@ -31,18 +30,13 @@ namespace Staples.DAL.Abstracts
 
         protected async Task<int> AddAsync(T entity)
         {
-            Task<int> contextSaveChangesTask;
-            Task<bool> xmlDatabaseAddTask = _xmlDbHelper.AddAsync(entity);
-
             using (var context = new StaplesDbContext())
             {
                 context.Set<T>().Add(entity);
-                contextSaveChangesTask = context.SaveChangesAsync();
+                return await context.SaveChangesAsync();
             }
-
-            await Task.WhenAll(contextSaveChangesTask, xmlDatabaseAddTask);
-
-            return contextSaveChangesTask.Result;
         }
+
+        private async Task<int> SaveChangesAsync(StaplesDbContext context) => await context.SaveChangesAsync();
     }
 }

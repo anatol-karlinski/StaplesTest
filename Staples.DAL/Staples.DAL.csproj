@@ -82,7 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\StaplesDb.mdf" />
-    <Content Include="App_Data\PersonDb.xml" />
+    <Content Include="App_Data\PersonTable.xml" />
     <Content Include="App_Data\StaplesDb_log.ldf">
       <DependentUpon>StaplesDb.mdf</DependentUpon>
     </Content>
