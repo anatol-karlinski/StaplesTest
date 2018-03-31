@@ -64,7 +64,7 @@ namespace Staples.Tests.IntegrationTests
         }
 
         [TestMethod]
-        public void CreateExistingPerson_ErrorsReturned()
+        public void CreateExistingPerson_ViewModelReturnsWithErrors()
         {
             InsertTestPersonIntoDatabase();
             _peopleController = new PeopleController(_peopleService);

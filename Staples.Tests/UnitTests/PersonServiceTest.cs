@@ -13,19 +13,20 @@ namespace Staples.Tests.UnitTests
     [TestClass]
     public class PersonServiceTest
     {
+
+        private PersonDetails _newPersonDetails = new PersonDetails()
+        {
+            FirstName = "TestPersonFirstName",
+            MiddleName = "TestPersonMiddleName",
+            LastName = "TestPersonFirstName",
+            Age = 100,
+            Email = "test@test.com",
+            Gender = Gender.Male
+        };
+
         [TestMethod]
         public void AddNewPerson_ReturnSuccess()
         {
-            var newPersonDetails = new PersonDetails()
-            {
-                FirstName = "TestPersonFirstName",
-                MiddleName = "TestPersonMiddleName",
-                LastName = "TestPersonFirstName",
-                Age = 100,
-                Email = "test@test.com",
-                Gender = Gender.Male
-            };
-
             var repoMock = new Mock<IPersonRepository>();
 
             repoMock.Setup(x => x.AddAsync(It.IsAny<Person>()))
@@ -35,15 +36,16 @@ namespace Staples.Tests.UnitTests
                 .Returns(Task.FromResult(new List<Person>()));
 
             var adapterMock = new Mock<IPersonAdapter>();
-            adapterMock.Setup(x => x.Adapt(It.IsAny<PersonDetails>())).Returns(new Person()
-            {
-                FirstName = newPersonDetails.FirstName,
-                LastName = newPersonDetails.LastName,
-                ID = 1
-            });
+            adapterMock.Setup(x => x.Adapt(It.IsAny<PersonDetails>()))
+                .Returns(new Person()
+                {
+                    FirstName = _newPersonDetails.FirstName,
+                    LastName = _newPersonDetails.LastName,
+                    ID = 1
+                });
 
             var service = new PeopleService(repoMock.Object, adapterMock.Object);
-            var serviceresponse = service.AddNewPerson(newPersonDetails).Result;
+            var serviceresponse = service.AddNewPerson(_newPersonDetails).Result;
 
             Assert.IsTrue(serviceresponse.OperationSuccessful);
         }
@@ -51,16 +53,6 @@ namespace Staples.Tests.UnitTests
         [TestMethod]
         public void AddExistingPerson_ReturnError()
         {
-            var newPersonDetails = new PersonDetails()
-            {
-                FirstName = "TestPersonFirstName",
-                MiddleName = "TestPersonMiddleName",
-                LastName = "TestPersonFirstName",
-                Age = 100,
-                Email = "test@test.com",
-                Gender = Gender.Male
-            };
-
             var repoMock = new Mock<IPersonRepository>();
 
             repoMock.Setup(x => x.AddAsync(It.IsAny<Person>()))
@@ -72,15 +64,16 @@ namespace Staples.Tests.UnitTests
                 }));
 
             var adapterMock = new Mock<IPersonAdapter>();
-            adapterMock.Setup(x => x.Adapt(It.IsAny<PersonDetails>())).Returns(new Person()
-            {
-                FirstName = newPersonDetails.FirstName,
-                LastName = newPersonDetails.LastName,
-                ID = 1
-            });
+            adapterMock.Setup(x => x.Adapt(It.IsAny<PersonDetails>()))
+                .Returns(new Person()
+                {
+                    FirstName = _newPersonDetails.FirstName,
+                    LastName = _newPersonDetails.LastName,
+                    ID = 1
+                });
 
             var service = new PeopleService(repoMock.Object, adapterMock.Object);
-            var serviceresponse = service.AddNewPerson(newPersonDetails).Result;
+            var serviceresponse = service.AddNewPerson(_newPersonDetails).Result;
 
             Assert.IsFalse(serviceresponse.OperationSuccessful);
         }
