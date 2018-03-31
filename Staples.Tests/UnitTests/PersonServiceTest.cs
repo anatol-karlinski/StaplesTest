@@ -45,9 +45,9 @@ namespace Staples.Tests.UnitTests
                 });
 
             var service = new PeopleService(repoMock.Object, adapterMock.Object);
-            var serviceresponse = service.AddNewPerson(_newPersonDetails).Result;
+            var serviceResponse = service.AddNewPerson(_newPersonDetails).Result;
 
-            Assert.IsTrue(serviceresponse.OperationSuccessful);
+            Assert.IsTrue(serviceResponse.OperationSuccessful);
         }
 
         [TestMethod]
@@ -73,9 +73,9 @@ namespace Staples.Tests.UnitTests
                 });
 
             var service = new PeopleService(repoMock.Object, adapterMock.Object);
-            var serviceresponse = service.AddNewPerson(_newPersonDetails).Result;
+            var serviceResponse = service.AddNewPerson(_newPersonDetails).Result;
 
-            Assert.IsFalse(serviceresponse.OperationSuccessful);
+            Assert.IsFalse(serviceResponse.OperationSuccessful);
         }
     }
 }

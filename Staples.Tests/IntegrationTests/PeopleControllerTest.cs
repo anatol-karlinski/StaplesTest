@@ -22,6 +22,7 @@ namespace Staples.Tests.IntegrationTests
         private static IPeopleService _peopleService;
         private static IPersonAdapter _personAdapter;
         private static IPersonRepository _personRepository;
+
         private static PeopleController _peopleController;
 
         [ClassInitialize]
@@ -68,6 +69,7 @@ namespace Staples.Tests.IntegrationTests
         {
             InsertTestPersonIntoDatabase();
             _peopleController = new PeopleController(_peopleService);
+
             var inputViewModel = new PersonDetailsViewModel()
             {
                 PersonDetails = new PersonDetails()
@@ -76,8 +78,10 @@ namespace Staples.Tests.IntegrationTests
                     LastName = _testPersonLastName
                 }
             };
+
             var result = _peopleController.Create(inputViewModel).Result;
             var responseViewModel = ((result as ViewResult).Model as PersonDetailsViewModel);
+
             Assert.IsTrue(responseViewModel.Errors.Any());
         }
 
