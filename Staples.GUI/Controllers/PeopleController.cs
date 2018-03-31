@@ -10,13 +10,13 @@ namespace Staples.GUI.Controllers
 {
     public class PeopleController : Controller
     {
-        private StaplesDbContext db = new StaplesDbContext();
-        private readonly IPeopleService _peopleDataManagementService;
+        private StaplesDBContext db = new StaplesDBContext();
+        private readonly IPeopleService _peopleService;
 
-        public PeopleController(IPeopleService peopleDataManagementService)
+        public PeopleController(IPeopleService peopleService)
         {
 
-            _peopleDataManagementService = peopleDataManagementService;
+            _peopleService = peopleService;
         }
 
         // GET: People
@@ -56,7 +56,7 @@ namespace Staples.GUI.Controllers
             if (!ModelState.IsValid)
                 return View(viewModel);
 
-            var response = await _peopleDataManagementService.AddNewPerson(viewModel.PersonDetails);
+            var response = await _peopleService.AddNewPerson(viewModel.PersonDetails);
             if (response.OperationSuccessful)
                 return RedirectToAction("Index");
             else

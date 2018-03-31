@@ -5,14 +5,14 @@ namespace Staples.DAL.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Staples.DAL.Models.StaplesDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Staples.DAL.Models.StaplesDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Staples.DAL.Models.StaplesDbContext context)
+        protected override void Seed(Staples.DAL.Models.StaplesDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

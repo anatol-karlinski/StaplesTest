@@ -38,6 +38,12 @@
     <Reference Include="Autofac, Version=4.0.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.0.1\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework">
       <HintPath>..\packages\MSTest.TestFramework.1.1.17\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
@@ -95,8 +101,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntegrationTests\PeopleControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -105,10 +111,26 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Staples.Adapters\Staples.Adapters.csproj">
+      <Project>{33D5EF4B-5F9F-4BF5-A09B-1D4C1200F502}</Project>
+      <Name>Staples.Adapters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Staples.DAL\Staples.DAL.csproj">
+      <Project>{4436BE97-6B89-40F6-A01D-F599BA42811D}</Project>
+      <Name>Staples.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Staples.GUI\Staples.GUI.csproj">
       <Project>{A57CBFA6-ABB0-4C8B-994F-D1928D51B993}</Project>
       <Name>Staples.GUI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Staples.SL\Staples.SL.csproj">
+      <Project>{4B876702-88E1-49DD-B6AA-A2D86365C881}</Project>
+      <Name>Staples.SL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="UnitTests\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

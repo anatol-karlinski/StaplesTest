@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -87,10 +86,17 @@ namespace Staples.DAL.Helpers
             }
         }
 
-        private static string DbPath(string dbName)
+        private static string DbPath(string dbName) => AssemblyDirectory + "/XmlDb/" + dbName;
+
+        private static string AssemblyDirectory
         {
-            var regex = new Regex("Staples[.][A-Za-z0-9]*");
-            return regex.Replace(HttpContext.Current.Server.MapPath("~/App_Data/" + dbName), "Staples.DAL");
+            get
+            {
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                return Path.GetDirectoryName(path);
+            }
         }
     }
 }

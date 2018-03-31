@@ -37,12 +37,7 @@ namespace Staples.SL.Services
                     return response;
                 }
 
-                var addedEntitiesCount = await _peopleRepository.AddAsync(basePersonEntity);
-                if (addedEntitiesCount == 0)
-                {
-                    response.AddError("Unknown error has occurred during communication with database");
-                    return response;
-                }
+                await _peopleRepository.AddAsync(basePersonEntity);
 
                 return response;
             }

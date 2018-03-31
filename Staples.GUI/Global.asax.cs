@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Staples.GUI.Infrastructure;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -16,7 +17,7 @@ namespace Staples.GUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
-            SL.Infrastructure.AutoMapperSetup.SetupAutoMapper();
+            AutoMapperSetup.SetupAutoMapper();
             DependencyResolver.SetResolver(InitializeDepedencyResolver());
         }
 
@@ -25,7 +26,7 @@ namespace Staples.GUI
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterModule<AutofacWebTypesModule>();
-            Infrastructure.DependencyInjectionSetup.RegisterDependencies(builder);
+            DependencyInjectionSetup.RegisterDependencies(builder);
             var container = builder.Build();
             return new AutofacDependencyResolver(container);
         }

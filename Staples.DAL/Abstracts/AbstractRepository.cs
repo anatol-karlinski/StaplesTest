@@ -24,7 +24,7 @@ namespace Staples.DAL.Abstracts
 
         public async Task<List<T>> GetWhereAsync(Expression<Func<T, bool>> whereQuery)
         {
-            using (var context = new StaplesDbContext())
+            using (var context = new StaplesDBContext())
             {
                 return await context.Set<T>()
                     .Where(whereQuery)
@@ -46,7 +46,7 @@ namespace Staples.DAL.Abstracts
 
         private async Task<int> AddToDatabaseAsync(T entity)
         {
-            using (var context = new StaplesDbContext())
+            using (var context = new StaplesDBContext())
             {
                 context.Set<T>().Add(entity);
                 return await context.SaveChangesAsync();

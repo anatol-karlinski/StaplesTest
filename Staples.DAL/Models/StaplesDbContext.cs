@@ -2,7 +2,7 @@
 
 namespace Staples.DAL.Models
 {
-    public class StaplesDbContext : DbContext
+    public class StaplesDBContext : DbContext
     {
         public DbSet<Person> People { get; set; }
     }

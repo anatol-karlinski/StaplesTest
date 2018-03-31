@@ -1,7 +1,0 @@
-<ArrayOfPerson xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<Person>
-		<ID>0</ID>
-		<FirstName>Anatol</FirstName>
-		<LastName>Karlinski</LastName>
-	</Person>
-</ArrayOfPerson>
