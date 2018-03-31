@@ -20,7 +20,15 @@ namespace Staples.DAL.Helpers
         public XmlDbHelper()
         {
             string dbName = typeof(T).Name + "Table.xml";
-            _databasePath = DbPath(dbName);
+
+            _databasePath = DbDirectory + "\\" + dbName;
+
+            if (!Directory.Exists(DbDirectory))
+                Directory.CreateDirectory(DbDirectory);
+
+            if (!File.Exists(_databasePath))
+                File.Create(_databasePath);
+
             _serializer = new XmlSerializer(typeof(List<T>));
         }
 
@@ -86,7 +94,10 @@ namespace Staples.DAL.Helpers
             }
         }
 
-        private static string DbPath(string dbName) => AssemblyDirectory + "/XmlDb/" + dbName;
+        private static string DbDirectory
+        {
+            get => AssemblyDirectory + "\\XmlDb";
+        }
 
         private static string AssemblyDirectory
         {
