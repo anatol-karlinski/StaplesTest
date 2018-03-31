@@ -11,12 +11,11 @@ namespace Staples.GUI.Controllers
     public class PeopleController : Controller
     {
         private StaplesDbContext db = new StaplesDbContext();
-        private readonly IPeopleDataManagementService _peopleDataManagementService;
+        private readonly IPeopleService _peopleDataManagementService;
 
-        public PeopleController(IPeopleDataManagementService peopleDataManagementService)
+        public PeopleController(IPeopleService peopleDataManagementService)
         {
 
-            //_peopleDataManagementService = new PeopleDataManagementService();
             _peopleDataManagementService = peopleDataManagementService;
         }
 

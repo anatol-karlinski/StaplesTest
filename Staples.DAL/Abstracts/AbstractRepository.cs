@@ -1,4 +1,5 @@
 using Staples.DAL.Helpers;
+using Staples.DAL.Interfaces;
 using Staples.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,12 @@ namespace Staples.DAL.Abstracts
     public abstract class AbstractRepository<T>
         where T : class
     {
-        private XMLHelper<T> _xmlDbHelper;
-        private LogHelper _logHelper;
+        private IXmlDbHelper<T> _xmlDbHelper;
+        private ILogHelper _logHelper;
 
         public AbstractRepository()
         {
-            _xmlDbHelper = new XMLHelper<T>();
+            _xmlDbHelper = new XmlDbHelper<T>(); ;
             _logHelper = new LogHelper();
         }
 

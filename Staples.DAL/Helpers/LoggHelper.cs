@@ -1,9 +1,10 @@
 ﻿using NLog;
+using Staples.DAL.Interfaces;
 using System.Reflection;
 
 namespace Staples.DAL.Helpers
 {
-    public class LogHelper
+    public class LogHelper : ILogHelper
     {
         public void LogEntity<T>(T entity)
             where T : class

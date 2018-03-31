@@ -3,7 +3,7 @@ using Staples.DAL.Models;
 
 namespace Staples.Adapters.Infrastructure
 {
-    public class InfrastructureSetup
+    public class AutoMapperSetup
     {
         public static void SetupAutoMapper()
         {

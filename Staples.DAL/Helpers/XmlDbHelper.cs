@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Staples.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,13 +12,13 @@ using System.Xml.Serialization;
 
 namespace Staples.DAL.Helpers
 {
-    public class XMLHelper<T>
+    public class XmlDbHelper<T> : IXmlDbHelper<T>
         where T : class
     {
         private string _databasePath;
         private XmlSerializer _serializer;
 
-        public XMLHelper()
+        public XmlDbHelper()
         {
             string dbName = typeof(T).Name + "Table.xml";
             _databasePath = DbPath(dbName);

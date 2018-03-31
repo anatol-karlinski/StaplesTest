@@ -4,7 +4,7 @@
     {
         public static void SetupAutoMapper()
         {
-            Adapters.Infrastructure.InfrastructureSetup.SetupAutoMapper();
+            Adapters.Infrastructure.AutoMapperSetup.SetupAutoMapper();
         }
     }
 }

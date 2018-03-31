@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Staples.SL.Interfaces
 {
-    public interface IPeopleDataManagementService
+    public interface IPeopleService
     {
         Task<ServiceResponse> AddNewPerson(PersonDetails personDetails);
         Task<bool> PersonIsInDatabase(PersonDetails person);

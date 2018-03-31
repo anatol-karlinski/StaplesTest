@@ -1,8 +1,6 @@
-using Staples.Adapters;
 using Staples.Adapters.Interfaces;
 using Staples.DAL.Interfaces;
 using Staples.DAL.Models;
-using Staples.DAL.Repositories;
 using Staples.SL.Interfaces;
 using Staples.SL.Models;
 using System;
@@ -11,22 +9,19 @@ using System.Threading.Tasks;
 
 namespace Staples.SL.Services
 {
-    public class PeopleDataManagementService : IPeopleDataManagementService
+    public class PeopleService : IPeopleService
     {
         private readonly IPersonRepository _peopleRepository;
-        private readonly IAdapter<Person, PersonDetails> _personAdapter;
+        private readonly IPersonAdapter _personAdapter;
 
-        public PeopleDataManagementService()
+        public PeopleService(
+            IPersonRepository peopleRepository,
+            IPersonAdapter personAdapter
+            )
         {
-            _peopleRepository = new PersonRepository();
-            _personAdapter = new PersonAdapter();
+            _peopleRepository = peopleRepository;
+            _personAdapter = personAdapter;
         }
-
-        //public PeopleService(IPeopleRepository peopleRepository, IAdapter<Person, PersonDetails> personAdapter)
-        //{
-        //    _peopleRepository = peopleRepository;
-        //    _personAdapter = personAdapter;
-        //}
 
         public async Task<ServiceResponse> AddNewPerson(PersonDetails personDetails)
         {
