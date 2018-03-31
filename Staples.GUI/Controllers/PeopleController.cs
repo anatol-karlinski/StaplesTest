@@ -1,7 +1,6 @@
 ﻿using Staples.DAL.Models;
 using Staples.GUI.ViewModels;
 using Staples.SL.Interfaces;
-using Staples.SL.Services;
 using System.Data.Entity;
 using System.Net;
 using System.Threading.Tasks;
@@ -14,9 +13,11 @@ namespace Staples.GUI.Controllers
         private StaplesDbContext db = new StaplesDbContext();
         private readonly IPeopleDataManagementService _peopleDataManagementService;
 
-        public PeopleController()
+        public PeopleController(IPeopleDataManagementService peopleDataManagementService)
         {
-            _peopleDataManagementService = new PeopleDataManagementService();
+
+            //_peopleDataManagementService = new PeopleDataManagementService();
+            _peopleDataManagementService = peopleDataManagementService;
         }
 
         // GET: People

@@ -1,6 +1,6 @@
 ﻿namespace Staples.SL.Infrastructure
 {
-    public class InfrastructureSetup
+    public class AutoMapperSetup
     {
         public static void SetupAutoMapper()
         {
