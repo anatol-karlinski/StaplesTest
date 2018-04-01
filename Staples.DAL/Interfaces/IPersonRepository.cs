@@ -7,5 +7,6 @@ namespace Staples.DAL.Interfaces
     public interface IPersonRepository : IRepository<Person>
     {
         Task<List<Person>> GetPeopleByFirstAndLastNameAsync(string firstName, string lastName);
+        Task<List<Person>> GetAllPeople();
     }
 }

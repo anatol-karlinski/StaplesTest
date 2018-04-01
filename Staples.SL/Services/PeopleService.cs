@@ -1,9 +1,10 @@
-using Staples.Adapters.Interfaces;
+using AutoMapper;
 using Staples.DAL.Interfaces;
 using Staples.DAL.Models;
 using Staples.SL.Interfaces;
 using Staples.SL.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,28 +13,24 @@ namespace Staples.SL.Services
     public class PeopleService : IPeopleService
     {
         private readonly IPersonRepository _peopleRepository;
-        private readonly IPersonAdapter _personAdapter;
 
-        public PeopleService(
-            IPersonRepository peopleRepository,
-            IPersonAdapter personAdapter
-            )
+        public PeopleService(IPersonRepository peopleRepository)
         {
             _peopleRepository = peopleRepository;
-            _personAdapter = personAdapter;
         }
 
         public async Task<ServiceResponse> AddNewPerson(PersonDetails personDetails)
         {
             var response = new ServiceResponse();
-            var basePersonEntity = _personAdapter.Adapt(personDetails);
+            var basePersonEntity = Mapper.Map<Person>(personDetails);
+
             try
             {
                 var personAlreadyExists = await PersonIsInDatabase(basePersonEntity);
 
                 if (personAlreadyExists)
                 {
-                    response.AddError("Provided person is already registered in the database");
+                    response.AddError("Provided person is already registered in the database.");
                     return response;
                 }
 
@@ -48,14 +45,15 @@ namespace Staples.SL.Services
             }
         }
 
+        public async Task<List<Person>> GetAllPeople()
+            => await _peopleRepository.GetAllPeople();
+
         public async Task<bool> PersonIsInDatabase(PersonDetails personDetails)
-        => await PersonIsInDatabase(_personAdapter.Adapt(personDetails));
+            => await PersonIsInDatabase(Mapper.Map<Person>(personDetails));
 
         private async Task<bool> PersonIsInDatabase(Person person)
-        {
-            var matchingPeople = await _peopleRepository.GetPeopleByFirstAndLastNameAsync(person.FirstName, person.LastName);
-            return matchingPeople.Any();
-        }
-
+            => (await _peopleRepository
+                    .GetPeopleByFirstAndLastNameAsync(person.FirstName, person.LastName))
+                    .Any();
     }
 }

@@ -19,7 +19,6 @@ namespace Staples.SL.Infrastructure
 
         private static void RegisterOutsideDependencies(ContainerBuilder builder)
         {
-            Adapters.Infrastructure.DependencyInjectionSetup.RegisterAdapters(builder);
             DAL.Infrastructure.DependencyInjectionSetup.RegisterRepositories(builder);
         }
     }

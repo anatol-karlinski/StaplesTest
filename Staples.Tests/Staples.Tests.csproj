@@ -124,10 +124,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Staples.Adapters\Staples.Adapters.csproj">
-      <Project>{33D5EF4B-5F9F-4BF5-A09B-1D4C1200F502}</Project>
-      <Name>Staples.Adapters</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Staples.DAL\Staples.DAL.csproj">
       <Project>{4436BE97-6B89-40F6-A01D-F599BA42811D}</Project>
       <Name>Staples.DAL</Name>
@@ -141,9 +137,7 @@
       <Name>Staples.SL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

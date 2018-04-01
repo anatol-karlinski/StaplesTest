@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Staples.Adapters;
-using Staples.Adapters.Interfaces;
 using Staples.DAL.Interfaces;
 using Staples.DAL.Models;
 using Staples.DAL.Repositories;
@@ -20,7 +18,6 @@ namespace Staples.Tests.IntegrationTests
         private static string _testPersonLastName = "TestPersonLasteName";
 
         private static IPeopleService _peopleService;
-        private static IPersonAdapter _personAdapter;
         private static IPersonRepository _personRepository;
 
         private static PeopleController _peopleController;
@@ -29,9 +26,8 @@ namespace Staples.Tests.IntegrationTests
         public static void TestSetup(TestContext context)
         {
             GUI.Infrastructure.AutoMapperSetup.SetupAutoMapper();
-            _personAdapter = new PersonAdapter();
             _personRepository = new PersonRepository();
-            _peopleService = new PeopleService(_personRepository, _personAdapter);
+            _peopleService = new PeopleService(_personRepository);
             _peopleController = new PeopleController(_peopleService);
         }
 

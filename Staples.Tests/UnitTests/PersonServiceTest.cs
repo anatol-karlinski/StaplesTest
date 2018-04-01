@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Staples.Adapters.Interfaces;
 using Staples.DAL.Enums;
 using Staples.DAL.Interfaces;
 using Staples.DAL.Models;
@@ -35,16 +34,7 @@ namespace Staples.Tests.UnitTests
             repoMock.Setup(x => x.GetPeopleByFirstAndLastNameAsync(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(Task.FromResult(new List<Person>()));
 
-            var adapterMock = new Mock<IPersonAdapter>();
-            adapterMock.Setup(x => x.Adapt(It.IsAny<PersonDetails>()))
-                .Returns(new Person()
-                {
-                    FirstName = _newPersonDetails.FirstName,
-                    LastName = _newPersonDetails.LastName,
-                    ID = 1
-                });
-
-            var service = new PeopleService(repoMock.Object, adapterMock.Object);
+            var service = new PeopleService(repoMock.Object);
             var serviceResponse = service.AddNewPerson(_newPersonDetails).Result;
 
             Assert.IsTrue(serviceResponse.OperationSuccessful);
@@ -63,16 +53,7 @@ namespace Staples.Tests.UnitTests
                     new Person()
                 }));
 
-            var adapterMock = new Mock<IPersonAdapter>();
-            adapterMock.Setup(x => x.Adapt(It.IsAny<PersonDetails>()))
-                .Returns(new Person()
-                {
-                    FirstName = _newPersonDetails.FirstName,
-                    LastName = _newPersonDetails.LastName,
-                    ID = 1
-                });
-
-            var service = new PeopleService(repoMock.Object, adapterMock.Object);
+            var service = new PeopleService(repoMock.Object);
             var serviceResponse = service.AddNewPerson(_newPersonDetails).Result;
 
             Assert.IsFalse(serviceResponse.OperationSuccessful);

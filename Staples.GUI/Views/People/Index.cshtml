@@ -1,39 +1,44 @@
-﻿@model IEnumerable<Staples.DAL.Models.Person>
+﻿@model List<Staples.DAL.Models.Person>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<h1 class="text-muted">
+    LIST OF PEOPLE
+</h1>
+<hr />
+<table class="table table-bordered table-hover" id="people-table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
+            <th scope="col">
+                <div>
+                    Nr.
+                </div>
+            </th>
+            <th scope="col">
+                First name
+            </th>
+            <th scope="col">
+                Last name
+            </th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <th scope="row">
+                    @(i+1)
+                </th>
+                <td>
+                    @Model[i].FirstName
+                </td>
+                <td>
+                    @Model[i].LastName
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
-
+<a href="/People/Create" class="btn btn-dark" role="button">New person</a>

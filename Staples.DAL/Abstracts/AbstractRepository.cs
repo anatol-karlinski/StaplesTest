@@ -52,5 +52,14 @@ namespace Staples.DAL.Abstracts
                 return await context.SaveChangesAsync();
             }
         }
+
+        private async Task<int> RemoveFromDatabaseAsync(T entity)
+        {
+            using (var context = new StaplesDBContext())
+            {
+                context.Set<T>().Remove(entity);
+                return await context.SaveChangesAsync();
+            }
+        }
     }
 }
