@@ -1,5 +1,4 @@
-﻿using Staples.DAL.Models;
-using Staples.GUI.ViewModels;
+﻿using Staples.GUI.ViewModels;
 using Staples.SL.Interfaces;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -8,12 +7,10 @@ namespace Staples.GUI.Controllers
 {
     public class PeopleController : Controller
     {
-        private StaplesDBContext db = new StaplesDBContext();
         private readonly IPeopleService _peopleService;
 
         public PeopleController(IPeopleService peopleService)
         {
-
             _peopleService = peopleService;
         }
 
