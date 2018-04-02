@@ -96,7 +96,7 @@ namespace Staples.DAL.Helpers
 
         private static string DbDirectory
         {
-            get => AssemblyDirectory + "\\XmlDb";
+            get => AssemblyDirectory.Replace("bin", "\\stored_data\\xml_logs\\");
         }
 
         private static string AssemblyDirectory
